@@ -15,7 +15,6 @@ export VISUAL="emacs-client"
 ## per-client settings override globals
 
 HOST=$(hostname)
+source $C_HOME/config/PROFILE_$HOST
 
-"$C_HOME/config/PROFILE_$HOST"
-
-export $XDG_CONFIG_HOME="$C_HOME/by-host/$HOST/dot-config"
+export XDG_CONFIG_HOME="$C_HOME/by-host/$HOST/dot-config"

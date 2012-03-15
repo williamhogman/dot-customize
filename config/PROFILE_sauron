@@ -1,7 +1,5 @@
 #!/bin/sh
 
-export CUSTOMIZE_HOME=$HOME/.customize
-
 # Add ~/bin to bin
 export PATH=$HOME/bin/:$PATH
 
