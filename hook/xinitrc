@@ -5,6 +5,15 @@
 # Fix the keyboard 
 $C_HOME/commands/setup-kb.sh
 
+# Launch redshift
 exec redshift &
+
+urxvtd -q -f -o 
+
+MY_OLD_PWD=$(pwd)
+cd $C_HOME/config
+xrdb -load Xresources
+cd $OLD_PWD
+
 exec awesome
 
