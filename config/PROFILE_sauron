@@ -1,0 +1,17 @@
+#!/bin/sh
+
+export CUSTOMIZE_HOME=$HOME/.customize
+
+# Add ~/bin to bin
+export PATH=$HOME/bin/:$PATH
+
+# Browser to be used by start-browser.sh and others
+export BROWSER="chromium"
+
+# EDITOR and VISUAL
+
+
+export EDITOR="emacs-client"
+export VISUAL="emacs-client"
+
+

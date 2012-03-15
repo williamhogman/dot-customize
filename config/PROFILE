@@ -1,0 +1,19 @@
+#!/bin/sh
+
+export C_HOME=$HOME/.customize/
+
+# Add ~/bin
+export PATH=$HOME/bin/:$PATH
+
+# Browser to be used by start-browser.sh and others
+export C_BROWSER="chromium"
+
+# EDITOR and VISUAL
+export EDITOR="emacs-client"
+export VISUAL="emacs-client"
+
+## per-client settings override globals
+
+HOST=$(hostname)
+
+"$C_HOME/config/PROFILE_$HOST"
