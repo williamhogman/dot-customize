@@ -2,6 +2,9 @@
 # xinitrc hook
 #
 
-setxkbmap se
+# Fix the keyboard 
+$C_HOME/commands/setup-kb.sh
 
+exec redshift &
 exec awesome
+

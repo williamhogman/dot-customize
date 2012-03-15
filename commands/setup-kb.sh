@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 # don't source this!
 
 source $C_HOME/lib/all.sh
