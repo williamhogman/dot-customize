@@ -10,10 +10,7 @@ exec redshift &
 
 urxvtd -q -f -o 
 
-MY_OLD_PWD=$(pwd)
-cd $C_HOME/config
-xrdb -load Xresources
-cd $OLD_PWD
+$C_HOME/commands/reload-xresources.sh
 
-exec awesome
+awesome -c $C_HOME/apps/awesome/rc.lua
 

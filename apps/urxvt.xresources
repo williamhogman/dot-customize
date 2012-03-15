@@ -1,0 +1,3 @@
+
+! Compact scrollbar
+URxvt.scrollstyle: plain
