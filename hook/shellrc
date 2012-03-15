@@ -1,1 +1,3 @@
 # Overall shellrc
+
+source $C_HOME/lib/all.sh

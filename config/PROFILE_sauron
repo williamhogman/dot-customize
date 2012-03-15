@@ -12,4 +12,6 @@ export BROWSER="chromium"
 export EDITOR="emacs-client"
 export VISUAL="emacs-client"
 
+# IO devices
+export C_KEYBOARD="IBM_MODEL_M"
 
