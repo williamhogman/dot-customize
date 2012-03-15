@@ -1,0 +1,7 @@
+#
+# xinitrc hook
+#
+
+setxkbmap se
+
+exec awesome
