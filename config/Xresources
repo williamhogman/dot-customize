@@ -1,0 +1,7 @@
+! xresources file for .customize
+
+!! Include solarized
+#include "../vendor/solarized/xresources-colors-solarized/Xresources"
+
+!! Include configs for urxvt
+#include "../apps/urxvt.xresources"
