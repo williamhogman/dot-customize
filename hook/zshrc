@@ -1,5 +1,7 @@
-#!/bin/zsh
-
 # Place ZSHRC stuff here
 
-$HOME/.customize/config/PROFILE
+source $HOME/.customize/config/PROFILE
+# After this .customize should have set all the variables we need
+
+# Overall shellrc
+source $C_HOME/hook/shellrc
