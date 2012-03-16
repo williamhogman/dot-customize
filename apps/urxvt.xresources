@@ -1,3 +1,9 @@
 
+! inconsolata
+URxvt.font:  xft:ttf-inconsolata:size=11
+
 ! Compact scrollbar
 URxvt.scrollstyle: plain
+
+! Load these extensions
+URxvt.perl-ext-common: default,tabbed
