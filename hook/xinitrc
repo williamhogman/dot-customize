@@ -10,6 +10,7 @@ exec redshift &
 
 urxvtd -q -f -o 
 
+$C_HOME/commands/setup-background.sh
 $C_HOME/commands/reload-xresources.sh
 
 awesome -c $C_HOME/apps/awesome/rc.lua
