@@ -32,11 +32,13 @@ do
 end
 -- }}}
 
+dot_customize = os.getenv("C_HOME")
+
+
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+beautiful.init(dot_customize.."/apps/awesome/theme.lua")
 
-dot_customize = os.getenv("C_HOME")
 
 
 -- Use our command to start the terminal
