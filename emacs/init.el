@@ -68,6 +68,11 @@
       (shell buffer)))
 
 
-(global-set-key (kbd "C-x RET") 'shell-dwim)
+(column-number-mode t)
+(setq inhibit-splash-screen t)
+
+(require 'fastnav)
+
+(require 'keybindings)
 
 (provide 'init)
