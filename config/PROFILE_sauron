@@ -9,8 +9,8 @@ export BROWSER="chromium"
 # EDITOR and VISUAL
 
 
-export EDITOR="emacs-client"
-export VISUAL="emacs-client"
+export EDITOR="emacsclient"
+export VISUAL="emacsclient"
 
 # IO devices
 export C_KEYBOARD="IBM_MODEL_M"

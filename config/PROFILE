@@ -9,8 +9,8 @@ export PATH=$HOME/bin/:$PATH
 export C_BROWSER="chromium"
 
 # EDITOR and VISUAL
-export EDITOR="emacs-client"
-export VISUAL="emacs-client"
+export EDITOR="emacsclient"
+export VISUAL="emacsclient"
 
 ## per-client settings override globals
 
