@@ -54,6 +54,10 @@ editor_cmd = terminal .. " -e " .. editor
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
 
+
+awesome.util.spawn(dot_customize.."/commands/autorun.sh")
+
+
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts =
 {
@@ -377,3 +381,4 @@ end)
 client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
