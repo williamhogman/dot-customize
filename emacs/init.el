@@ -71,6 +71,13 @@
 (column-number-mode t)
 (setq inhibit-splash-screen t)
 
+
+
+(require 'ess-settings)
+(require 'autocomplete-settings)
+
+
+(require 'python-settings)
 (require 'fastnav)
 
 (require 'keybindings)
