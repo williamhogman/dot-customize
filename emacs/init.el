@@ -8,15 +8,13 @@
     (normal-top-level-add-subdirs-to-load-path)
     )
 
-  ;; You are gonna need color-theme for this work!
-  (require 'color-theme)
+
   ;; Add solarized colour theme
   (add-to-list
    'load-path
    (concat (getenv "C_HOME") "vendor/solarized/emacs-colors-solarized/")
    )
-  (require 'color-theme-solarized)
-  (color-theme-solarized-dark)
+
 
 
 
@@ -36,6 +34,8 @@
   
   )
 
+
+(require 'colortheme-settings)
 
 (setenv "ESHELL" (concat (getenv "C_HOME") "/commands/eshell.sh"))
 
