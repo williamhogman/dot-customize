@@ -1,0 +1,7 @@
+(setq package-archives '(("ELPA" . "http://tromey.com/elpa")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("emacs-elpa" . "http://elpa.gnu.org/packages")
+                         ("melpa" . "http://mepla.milkbox.net/packages")
+                         ))
+(package-initialize)
+(provide 'elpa-settings)
