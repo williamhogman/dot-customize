@@ -55,7 +55,7 @@ editor_cmd = terminal .. " -e " .. editor
 modkey = "Mod4"
 
 
-awesome.util.spawn(dot_customize.."/commands/autorun.sh")
+awful.util.spawn(dot_customize.."/commands/autorun.sh")
 
 
 -- Table of layouts to cover with awful.layout.inc, order matters.

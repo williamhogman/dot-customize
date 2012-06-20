@@ -7,4 +7,4 @@
                         (file-name-directory buffer-file-name))))
       (list (concat (getenv "C_HOME") "/emacs/language-settings/pycheckers.py") (list local-file)))))
 
-(provide python-settings)
+(provide python)

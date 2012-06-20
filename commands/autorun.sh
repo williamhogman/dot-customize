@@ -9,3 +9,6 @@ urxvtd -q -f -o
 # redshift
 exec redshift &
 
+exec dropbox &
+
+pulseaudio --start

@@ -2,13 +2,14 @@
 
 
 (let  ((chome (concat (getenv "C_HOME") "emacs")))
-
-
+  
   (let ((default-directory chome ))
     (normal-top-level-add-subdirs-to-load-path)
     )
 
-
+  (let ((default-directory (concat chome "/vendor")))
+    (normal-top-level-add-subdirs-to-load-path)
+    )
   ;; Add solarized colour theme
   (add-to-list
    'load-path
@@ -16,8 +17,7 @@
    )
 
 
-
-
+  
 
   (require 'elpa-settings)
   
@@ -34,12 +34,14 @@
   
   )
 
+(ignore-errors (load (concat (getenv "C_HOME") "private/emacs-priv.el")))
 
 (require 'colortheme-settings)
 
 (setenv "ESHELL" (concat (getenv "C_HOME") "/commands/eshell.sh"))
 
 
+(require 'rust-mode)
 
 (column-number-mode t)
 (setq inhibit-splash-screen t)
@@ -50,9 +52,9 @@
 (require 'ess-settings)
 (require 'autocomplete-settings)
 
+(require 'yaml)
 
-
-(require 'python-settings)
+(require 'python)
 (require 'fastnav)
 
 (require 'keybindings)
