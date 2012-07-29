@@ -58,6 +58,7 @@
 (require 'yaml)
 
 (require 'python-settings)
+(require 'clojure-settings)
 (require 'fastnav)
 
 (require 'keybindings)
