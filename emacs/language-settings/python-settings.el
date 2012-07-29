@@ -1,3 +1,6 @@
+
+(require 'python)
+
 (when (load "flymake" t)
   (defun flymake-pycheckers-init ()
     (let* ((temp-file (flymake-init-create-temp-buffer-copy
@@ -7,4 +10,4 @@
                         (file-name-directory buffer-file-name))))
       (list (concat (getenv "C_HOME") "/emacs/language-settings/pycheckers.py") (list local-file)))))
 
-(provide python)
+(provide 'python-settings)
