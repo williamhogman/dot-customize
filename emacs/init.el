@@ -57,7 +57,7 @@
 
 (require 'yaml)
 
-(require 'python)
+(require 'python-settings)
 (require 'fastnav)
 
 (require 'keybindings)
