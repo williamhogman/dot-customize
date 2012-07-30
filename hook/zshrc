@@ -3,5 +3,11 @@
 source $HOME/.customize/config/PROFILE
 # After this .customize should have set all the variables we need
 
+fpath=($C_HOME/lib/os_compat.sh $fpath)
+
+autoload c_on_a_mac c_dont_run_on_mac
+
 # Overall shellrc
 source $C_HOME/hook/shellrc
+
+source $C_HOME/apps/zsh/main.zsh

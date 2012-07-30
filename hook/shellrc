@@ -1,3 +1,6 @@
 # Overall shellrc
+if [[ -z "C_LIBS_LOADED" ]]; then
+    export C_LIBS_LOADED=1
+    source $C_HOME/lib/all.sh
+fi
 
-source $C_HOME/lib/all.sh
