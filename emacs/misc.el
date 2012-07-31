@@ -32,4 +32,13 @@
    (let ((comint-buffer-maximum-size 0))
      (comint-truncate-buffer)))
 
+;; dir in modeline for shells
+(defun add-mode-line-dirtrack ()
+  "When editing a file, show the last 2 directories of the current path in the mode line."
+  (add-to-list 'mode-line-buffer-identification 
+               '(:eval (abbreviate-file-name default-directory))))
+
+(add-hook 'find-file-hook 'add-mode-line-dirtrack)
+
+
 (provide 'misc)
