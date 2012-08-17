@@ -1,3 +1,7 @@
 private/**
 by-host/*/dot-config/chromium/
+by-host/*/dot-config/chromium-dev/
+by-host/*/dot-config/f-spot/
+by-host/*/dot-config/spotify/
+
 .svn
