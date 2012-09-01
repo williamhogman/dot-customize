@@ -5,7 +5,6 @@ theme = {}
 theme.font = "inconsolata 8"
 
 
-
 S_base03    = "#002b36"
 S_base02    = "#073642"
 S_base01    = "#586e75"
