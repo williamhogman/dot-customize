@@ -1,15 +1,8 @@
 (require 'clojure-mode)
-
-(defun clojure-slime-maybe-compile-and-load-file ()
-  "Call function `slime-compile-and-load-file' if current buffer is connected to a swank server.
-  Meant to be used in `after-save-hook'."
-  (when (and (eq major-mode 'clojure-mode) (slime-connected-p))
-    (slime-compile-and-load-file)))
+(require 'nrepl )
 
 
-(add-hook 'after-save-hook 'clojure-slime-maybe-compile-and-load-file)
-
-
+(setq nrepl-server-command "lein2 repl")
 
 (eval-after-load 'clojure-mode
   '(font-lock-add-keywords
@@ -68,5 +61,28 @@
 
 (dolist (x '(scheme emacs-lisp lisp))
   (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'rainbow-delimiters-mode))
+
+
+(add-hook 'nrepl-interaction-mode-hook
+          (lambda ()
+            (enable-paredit-mode)))
+
+(add-hook 'nrepl-mode-hook
+          (lambda ()
+            (enable-paredit-mode)
+            (define-key nrepl-mode-map
+              (kbd "{") 'paredit-open-curly)
+            (define-key nrepl-mode-map
+              (kbd "}") 'paredit-close-curly)))
+
+(setq nrepl-popup-stacktraces nil)
+(add-to-list 'same-window-buffer-names "*nrepl*")
+
+;;Auto Complete
+(require 'ac-nrepl )
+(add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
+(add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
+(eval-after-load "auto-complete"
+  '(add-to-list 'ac-modes 'nrepl-mode))
 
 (provide 'clojure-settings)
