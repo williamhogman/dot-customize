@@ -7,6 +7,7 @@ require("beautiful")
 -- Notification library
 require("naughty")
 
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -33,7 +34,7 @@ end
 -- }}}
 
 dot_customize = os.getenv("C_HOME")
-
+package.path = package.path .. ";"..dot_customize.."/apps/awesome/?.lua"
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
@@ -76,14 +77,17 @@ layouts =
 }
 -- }}}
 
--- {{{ Tags
--- Define a tag table which hold all screen tags.
 tags = {}
-for s = 1, screen.count() do
-    -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
+ -- {{{ Tags
+do
+   local t = require "tags"
+   
+   for s = 1, screen.count() do
+      tags[s] = awful.tag(t.settings[s].names, s, layouts[1])
+   end
 end
--- }}}
+ -- }}}
+naughty.notify("Whoops!")
 
 -- {{{ Menu
 -- Create a laucher widget and a main menu
@@ -99,13 +103,12 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
                                   }
                         })
 
-mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
-                                     menu = mymainmenu })
+
 -- }}}
 
 -- {{{ Wibox
 -- Create a textclock widget
-mytextclock = awful.widget.textclock({ align = "right" })
+mytextclock = awful.widget.textclock({ align = "right"},"%R %d/%m %U.%u")
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
@@ -179,13 +182,12 @@ for s = 1, screen.count() do
     -- Add widgets to the wibox - order matters
     mywibox[s].widgets = {
         {
-            mylauncher,
             mytaglist[s],
             mypromptbox[s],
             layout = awful.widget.layout.horizontal.leftright
         },
         mylayoutbox[s],
-        mytextclock,
+        s == 1 and mytextclock or nil,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
@@ -251,6 +253,11 @@ globalkeys = awful.util.table.join(
 
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
+    --Custom stuff
+    awful.key({ modkey,           }, "F12",
+              function () 
+                 awful.util.spawn(dot_customize.."commands/screen-off.sh")
+              end),
 
     awful.key({ modkey }, "x",
               function ()
@@ -282,44 +289,45 @@ clientkeys = awful.util.table.join(
         end)
 )
 
--- Compute the maximum number of digit we need, limited to 9
-keynumber = 0
-for s = 1, screen.count() do
-   keynumber = math.min(9, math.max(#tags[s], keynumber));
-end
-
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it works on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
-for i = 1, keynumber do
-    globalkeys = awful.util.table.join(globalkeys,
-        awful.key({ modkey }, "#" .. i + 9,
+
+-- These are the keys that we're gonna use 
+-- #49 is § 20 is + and 21 is ´
+keycodes = {"#49", "1", "2", "3", "4", "5", "6", "7", "8"
+, "9", "0", "#20", "#21"}
+
+for i, v in pairs(keycodes) do
+globalkeys = awful.util.table.join(globalkeys,
+        awful.key({ modkey }, v,
                   function ()
                         local screen = mouse.screen
                         if tags[screen][i] then
                             awful.tag.viewonly(tags[screen][i])
                         end
                   end),
-        awful.key({ modkey, "Control" }, "#" .. i + 9,
+        awful.key({ modkey, "Control" }, v,
                   function ()
                       local screen = mouse.screen
                       if tags[screen][i] then
                           awful.tag.viewtoggle(tags[screen][i])
                       end
                   end),
-        awful.key({ modkey, "Shift" }, "#" .. i + 9,
+        awful.key({ modkey, "Shift" }, v,
                   function ()
                       if client.focus and tags[client.focus.screen][i] then
                           awful.client.movetotag(tags[client.focus.screen][i])
                       end
                   end),
-        awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
+        awful.key({ modkey, "Control", "Shift" }, v,
                   function ()
                       if client.focus and tags[client.focus.screen][i] then
                           awful.client.toggletag(tags[client.focus.screen][i])
                       end
                   end))
 end
+
 
 clientbuttons = awful.util.table.join(
     awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
@@ -345,11 +353,25 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
+
+    { rule = { class = "Skype" },
+      properties = { tag = tags[1][13] }},
+    { rule = { name = "emacs-irc" }, properties = { tag=tags[1][12] }},
+    { rule = { class = "Skype", role = "ConverstationsWindows"}, properties={callback=awful.client.setslave} },
+    { rule = { class = "Thunderbird" },
+      properties = { tag = tags[2][13] }},
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
 }
 -- }}}
+
+--- {{{ Special tags 
+
+awful.tag.setproperty(tags[1][13], "mwfact", 0.8)
+
+-- }}}
+
 
 -- {{{ Signals
 -- Signal function to execute when a new client appears.

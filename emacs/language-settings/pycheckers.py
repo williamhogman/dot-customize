@@ -1,184 +1,158 @@
 #!/usr/bin/env python2
 
+#!/usr/bin/env python
+"""A hacked up version of the multiple-Python checkers script from EmacsWiki.
+
+ - Simplified & faster
+ - Extended with pep8.py
+ - Extended with pydo (http://www.lunaryorn.de/code/pydo.html)
+ - pylint & pychecker removed
+
+Drop something like this in your .emacs:
+
+(when (load "flymake" t)
+  (defun flymake-pycheckers-init ()
+    (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                       'flymake-create-temp-inplace))
+           (local-file (file-relative-name
+                        temp-file
+                        (file-name-directory buffer-file-name))))
+      (list "/path/to/this/file" (list local-file))))
+
+
+You may also need to set up your path up in the __main__ function at the
+bottom of the file and change the #! line above to an appropriate interpreter.
+
+==============================================================================
+
+This code is made available by Jason Kirtland <jek@discorporate.us> under the
+Creative Commons Share Alike 1.0 license:
+http://creativecommons.org/licenses/sa/1.0/
+
+Original work taken from http://www.emacswiki.org/emacs/PythonMode, author
+unknown.
+
+"""
+
+## Customization ##
+
+# Checkers to run be default, when no --checkers options are supplied.
+# One or more of pydo, pep8 or pyflakes, separated by commas
+default_checkers = 'pep8, pyflakes'
+
+# A list of error codes to ignore.
+# default_ignore_codes = ['E225', 'W114']
+default_ignore_codes = []
+
+## End of customization ##
+
 import os
+from os import path
 import re
 import sys
-import compiler
 
 from subprocess import Popen, PIPE
 
-PYLINT_COMMAND = "pylint"
-PYCHECKER_COMMAND = "pychecker"
-PEP8_COMMAND = "pep8"
-PYFLAKES_COMMAND = "pyflakes"
-
 
 class LintRunner(object):
-    """ Base class provides common functionality to run
-          python code checkers. """
-    sane_default_ignore_codes = set([])
-    command = None
+    """Base class provides common functionality to run python code checkers."""
+
+    output_format = ("%(level)s %(error_type)s%(error_number)s:"
+                     "%(description)s at %(filename)s line %(line_number)s.")
+
+    output_template = dict.fromkeys(
+        ('level', 'error_type', 'error_number', 'description',
+         'filename', 'line_number'), '')
+
     output_matcher = None
-    #flymake: ("\\(.*\\) at \\([^ \n]+\\) line \\([0-9]+\\)[,.\n]" 2 3 nil 1)
-    #or in non-retardate: r'(.*) at ([^ \n]) line ([0-9])[,.\n]'
-    output_format = "%(level)s %(error_type)s%(error_number)s:" \
-                    "%(description)s at %(filename)s line %(line_number)s."
 
-    def __init__(self, virtualenv=None, ignore_codes=(),
-                 use_sane_defaults=True):
-        if virtualenv:
-            # This is the least we can get away with (hopefully).
-            self.env = {'VIRTUAL_ENV': virtualenv,
-                        'PATH': virtualenv + '/bin:' + os.environ['PATH']}
-        else:
-            self.env = None
-        self.virtualenv = virtualenv
+    sane_default_ignore_codes = set([])
+
+    command = None
+
+    run_flags = ()
+
+    def __init__(self, ignore_codes=(), use_sane_defaults=True):
         self.ignore_codes = set(ignore_codes)
-        self.use_sane_defaults = use_sane_defaults
+        if use_sane_defaults:
+            self.ignore_codes ^= self.sane_default_ignore_codes
 
-    @property
-    def operative_ignore_codes(self):
-        if self.use_sane_defaults:
-            return self.ignore_codes | self.sane_default_ignore_codes
-        else:
-            return self.ignore_codes
-
-    @property
-    def run_flags(self):
-        return ()
-
-    @staticmethod
-    def fixup_data(_line, data):
+    def fixup_data(self, line, data):
         return data
 
-    @classmethod
-    def process_output(cls, line):
-        m = cls.output_matcher.match(line)
+    def process_output(self, line):
+        m = self.output_matcher.match(line)
         if m:
-            fixed_data = dict.fromkeys(('level', 'error_type',
-                                        'error_number', 'description',
-                                        'filename', 'line_number'),
-                                       '')
-            fixed_data.update(cls.fixup_data(line, m.groupdict()))
-            fixed_data['description'] = (
-                cls.__name__ + ' ' + fixed_data['description'])
-            print cls.output_format % fixed_data
-        else:
-            print >> sys.stderr, "Line is broken: %s %s" % (cls, line)
+            return m.groupdict()
 
     def run(self, filename):
         args = [self.command]
         args.extend(self.run_flags)
         args.append(filename)
-        process = Popen(args, stdout=PIPE, stderr=PIPE, env=self.env)
+
+        process = Popen(args, stdout=PIPE, stderr=PIPE)
+
         for line in process.stdout:
-            self.process_output(line)
+            match = self.process_output(line)
+            if match:
+                tokens = dict(self.output_template)
+                tokens.update(self.fixup_data(line, match))
+                print self.output_format % tokens
+
+        for line in process.stderr:
+            match = self.process_output(line)
+            if match:
+                tokens = dict(self.output_template)
+                tokens.update(self.fixup_data(line, match))
+                print self.output_format % tokens
 
 
-class CompilerRunner(LintRunner):
-    def run(self, filename):
-        error_args = None
-        try:
-            compiler.parseFile(filename)
-        except (SyntaxError, Exception),  e:
-            error_args = e.args
-        if error_args:
-            self.process_output(filename, error_args)
+class PyflakesRunner(LintRunner):
+    """Run pyflakes, producing flymake readable output.
+
+    The raw output looks like:
+      tests/test_richtypes.py:4: 'doom' imported but unused
+      tests/test_richtypes.py:33: undefined name 'undefined'
+    or:
+      tests/test_richtypes.py:40: could not compile
+             deth
+            ^
+    """
+
+    command = 'pyflakes'
+
+    output_matcher = re.compile(
+        r'(?P<filename>[^:]+):'
+        r'(?P<line_number>[^:]+):'
+        r'(?P<description>.+)$')
 
     @classmethod
-    def process_output(cls, filename, args):
-        fixed_data = dict.fromkeys(('level', 'error_type',
-                                    'error_number', 'description',
-                                    'filename', 'line_number'),
-                                   '')
-        fixed_data['level'] = 'ERROR'
-        fixed_data['line_number'] = args[1][1]
-        fixed_data['filename'] = filename
-        fixed_data['description'] = args[0]
-
-        print cls.output_format % fixed_data
-
-
-class PylintRunner(LintRunner):
-    """ Run pylint, producing flymake readable output.
-    The raw output looks like:
-      render.py:49: [C0301] Line too long (82/80)
-      render.py:1: [C0111] Missing docstring
-      render.py:3: [E0611] No name 'Response' in module 'werkzeug'
-      render.py:32: [C0111, render] Missing docstring
-      jutils.py:859: [C0301] Line too long (107/80)"""
-    output_matcher = re.compile(
-        r'(?P<filename>[^:]+):'
-        r'(?P<line_number>\d+):'
-        r'\s\[(?P<error_type>[WECR])(?P<error_number>[\d]+.+?\])'
-        r'\s*(?P<description>.*)$')
-    command = PYLINT_COMMAND
-    sane_default_ignore_codes = set([
-        "C0103",  # Naming convention
-        "C0111",  # Missing Docstring
-        "E1002",  # Use super on old-style class
-        "W0232",  # No __init__
-        #"I0011",  # Warning locally suppressed using disable-msg
-        #"I0012",  # Warning locally suppressed using disable-msg
-        #"W0511",  # FIXME/TODO
-        #"W0142",  # *args or **kwargs magic.
-        "R0904",  # Too many public methods
-        "R0903",  # Too few public methods
-        "R0201",  # Method could be a function
-        "W0141",  # Used built in function map
-        ])
-
-    @staticmethod
-    def fixup_data(_line, data):
-        if data['error_type'].startswith('E'):
-            data['level'] = 'ERROR'
-        else:
+    def fixup_data(cls, line, data):
+        if 'imported but unused' in data['description']:
             data['level'] = 'WARNING'
+        elif 'redefinition of unused' in data['description']:
+            data['level'] = 'WARNING'
+        else:
+            data['level'] = 'ERROR'
+        data['error_type'] = 'PY'
+        data['error_number'] = 'F'
+
         return data
-
-    @property
-    def run_flags(self):
-        return ('--output-format', 'parseable',
-                '--include-ids', 'y',
-                '--reports', 'n',
-                '--disable-msg=' + ','.join(self.operative_ignore_codes))
-
-
-class PycheckerRunner(LintRunner):
-    """ Run pychecker, producing flymake readable output.
-    The raw output looks like:
-      render.py:49: Parameter (maptype) not used
-      render.py:49: Parameter (markers) not used
-      render.py:49: Parameter (size) not used
-      render.py:49: Parameter (zoom) not used """
-    command = PYCHECKER_COMMAND
-    output_matcher = re.compile(
-        r'(?P<filename>[^:]+):'
-        r'(?P<line_number>\d+):'
-        r'\s+(?P<description>.*)$')
-
-    @staticmethod
-    def fixup_data(_line, data):
-        #XXX: doesn't seem to give the level
-        data['level'] = 'WARNING'
-        return data
-
-    @property
-    def run_flags(self):
-        return '--no-deprecated', '--only', '-#0'
 
 
 class Pep8Runner(LintRunner):
-    """ Run pep8.py, producing flymake readable output.
+    """Run pep8.py, producing flymake readable output.
+
     The raw output looks like:
       spiders/structs.py:3:80: E501 line too long (80 characters)
       spiders/structs.py:7:1: W291 trailing whitespace
       spiders/structs.py:25:33: W602 deprecated form of raising exception
-      spiders/structs.py:51:9: E301 expected 1 blank line, found 0 """
-    command = PEP8_COMMAND
-    # sane_default_ignore_codes = set([
-    #     'RW29', 'W391',
-    #     'W291', 'WO232'])
+      spiders/structs.py:51:9: E301 expected 1 blank line, found 0
+
+    """
+
+    command = 'pep8'
+
     output_matcher = re.compile(
         r'(?P<filename>[^:]+):'
         r'(?P<line_number>[^:]+):'
@@ -186,8 +160,8 @@ class Pep8Runner(LintRunner):
         r' (?P<error_number>\w+) '
         r'(?P<description>.+)$')
 
-    @staticmethod
-    def fixup_data(_line, data):
+    @classmethod
+    def fixup_data(cls, line, data):
         data['level'] = 'WARNING'
         return data
 
@@ -196,62 +170,89 @@ class Pep8Runner(LintRunner):
         return '--repeat', '--ignore=' + ','.join(self.ignore_codes)
 
 
-class PyflakesRunner(LintRunner):
-    """ Run pyflakes, producing flymake readable output.
+class PydoRunner(LintRunner):
+    """Run pydo, producing flymake readable output.
+
     The raw output looks like:
-    ./milo/models/cck.py:47: 'env' imported but unused
-    ./milo/models/cck.py:51: 'dbutils' imported but unused
-    ./milo/models/cck.py:1217: undefined name 'CrawlReadinessException'
-    ./milo/models/cck.py:1221: undefined name 'CrawlReadinessException'
-    ./milo/models/cck.py:1224: undefined name 'magicnames'
-    ./milo/models/cck.py:1226: undefined name 'CrawlReadinessException'
-    ./milo/models/cck.py:1227: undefined name 'magicnames'
-    ./milo/models/cck.py:1231: undefined name 'CrawlReadinessException'
-    ./milo/models/cck.py:1236: undefined name 'CrawlReadinessException'
-    ./milo/models/cck.py:1240: undefined name 'CrawlReadinessException'
-    ./milo/models/cck.py:1247: undefined name 'CrawlReadinessException'
-    ./milo/models/cck.py:1976: undefined name 'extractor'
+      users.py:356:FIXME this will fail if None
+      users.py:470:todo:rtf memcache this possibly?
+      users.py:482:TODO This will need to trigger a history entry and
+
     """
-    command = PYFLAKES_COMMAND
+
+    command = 'pydo'
 
     output_matcher = re.compile(
         r'(?P<filename>[^:]+):'
         r'(?P<line_number>[^:]+):'
-        r'(?P<description>.+)$')
+        r'(?P<error_number>\w+)'
+        r'(\W*|\s*)'
+        r'(?P<description>.*)$')
 
-    @staticmethod
-    def fixup_data(_line, data):
-        data['level'] = 'ERROR'
+    @classmethod
+    def fixup_data(cls, line, data):
+        number = data['error_number'] = data['error_number'].upper()
+        if number == 'FIXME':
+            data['level'] = 'ERROR'
+        else:
+            data['level'] = 'WARNING'
         return data
 
 
-def main():
-    from optparse import OptionParser
-    parser = OptionParser()
-    parser.add_option("-e", "--virtualenv",
-                      dest="virtualenv",
-                      default=None,
-                      help="virtualenv directory")
-    parser.add_option("-i", "--ignore_codes",
-                      dest="ignore_codes",
-                      default=(),
-                      help="error codes to ignore")
-    options, args = parser.parse_args()
+def croak(*msgs):
+    for m in msgs:
+        print >> sys.stderr, m.strip()
+    sys.exit(1)
 
-    for runnerclass in (PylintRunner,
-                        #PycheckerRunner,
-                        Pep8Runner,
-                        PyflakesRunner,
-                        CompilerRunner):
-        runner = runnerclass(virtualenv=options.virtualenv,
-                             ignore_codes=options.ignore_codes)
-        try:
-            runner.run(args[0])
-        except Exception:
-            #print >> sys.stdout, '{0} FAILED'.format(runner)
-            print 'ERROR : {0} failed to run at {1} line 1.'.format(
-                runner.__class__.__name__, args[0])
+
+RUNNERS = {
+    'pyflakes': PyflakesRunner,
+    'pep8': Pep8Runner,
+    'pydo': PydoRunner,
+    }
 
 
 if __name__ == '__main__':
-    main()
+    # transparently add a virtualenv to the path when launched with a venv'd
+    # python.
+    os.environ['PATH'] = \
+      path.dirname(sys.executable) + ':' + os.environ['PATH']
+
+    if len(sys.argv) < 2:
+        croak("Usage: %s [file]" % sys.argv[0])
+    elif len(sys.argv) > 2:
+        from optparse import OptionParser
+        parser = OptionParser()
+        parser.add_option("-i", "--ignore_codes", dest="ignore_codes",
+                          default=[], action='append',
+                          help="error codes to ignore")
+        parser.add_option("-c", "--checkers", dest="checkers",
+                          default='pep8,pyflakes',
+                          help="comma separated list of checkers")
+        options, args = parser.parse_args()
+        if not args:
+            croak("Usage: %s [file]" % sys.argv[0])
+        if options.checkers:
+            checkers = options.checkers
+        else:
+            checkers = default_checkers
+        if options.ignore_codes:
+            ignore_codes = options.ignore_codes
+        else:
+            ignore_codes = default_ignore_codes
+        source_file = args[0]
+    else:
+        source_file = sys.argv[1]
+        checkers = default_checkers
+        ignore_codes = default_ignore_codes
+
+    for checker in checkers.split(','):
+        try:
+            cls = RUNNERS[checker.strip()]
+        except KeyError:
+            croak(("Unknown checker %s" % checker),
+                  ("Expected one of %s" % ', '.join(RUNNERS.keys())))
+        runner = cls(ignore_codes=ignore_codes)
+        runner.run(source_file)
+
+    sys.exit(0)

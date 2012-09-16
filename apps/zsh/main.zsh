@@ -6,7 +6,7 @@ source $C_ZSH_F/looks.zsh
 source $C_ZSH_F/theme.zsh
 source $C_ZSH_F/completion.zsh
 
-if [[ $TERM == "emacs" ]]; then
+if [[ $TERM != "emacs" ]]; then
     source $C_HOME/apps/zsh/key-bindings.zsh
 fi
 
