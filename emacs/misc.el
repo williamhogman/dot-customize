@@ -1,6 +1,10 @@
 ;;
 ;; Misc stuff
 
+(require 'volatile-highlights)
+(volatile-highlights-mode t)
+
+
 
 ;; Smart shell function
 (defun my-filter (condp lst)
@@ -38,7 +42,7 @@
   (add-to-list 'mode-line-buffer-identification 
                '(:eval (abbreviate-file-name default-directory))))
 
-(add-hook 'find-file-hook 'add-mode-line-dirtrack)
+(add-hook 'shell-mode-hook 'add-mode-line-dirtrack)
 
 
 (provide 'misc)
