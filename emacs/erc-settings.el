@@ -12,3 +12,5 @@
                               (class . "emacs-irc")
  			      (minibuffer . t))))
   (znc-erc 'freenode))
+
+(provide 'erc-settings)
