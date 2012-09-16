@@ -63,4 +63,6 @@
 
 (require 'keybindings)
 
+(require 'erc-settings)
+
 (provide 'init)
