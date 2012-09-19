@@ -1,9 +1,9 @@
 
 
 
-(if (boundp menu-bar-mode) (menu-bar-mode 0))
-(if (boundp tool-bar-mode) (tool-bar-mode 0))
-(if (boundp scroll-bar-mode) (scroll-bar-mode 0))
+(if (boundp 'menu-bar-mode) (menu-bar-mode 0))
+(if (boundp 'tool-bar-mode) (tool-bar-mode 0))
+(if (boundp 'scroll-bar-mode) (scroll-bar-mode 0))
 
 (let  ((chome (concat (getenv "C_HOME") "emacs")))
   
