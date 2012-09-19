@@ -7,7 +7,7 @@
 (if (fboundp 'package-initialize)
   (package-initialize)
   (progn
-    (load (concat (getenv "C_HOME")) "/emacs/compat/package.el")
+    (load (concat (getenv "C_HOME") "emacs/compat/package.el"))
     (package-initialize)))
 
 (provide 'elpa-settings)
