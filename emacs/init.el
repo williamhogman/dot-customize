@@ -5,6 +5,11 @@
 (if (boundp 'tool-bar-mode) (tool-bar-mode 0))
 (if (boundp 'scroll-bar-mode) (scroll-bar-mode 0))
 
+;; If C_HOME hasn't been set give it a resonable default
+(if (not (getenv "C_HOME"))
+    (setenv "C_HOME" (concat (getenv "HOME") "/.customize/")))
+
+
 (let  ((chome (concat (getenv "C_HOME") "emacs")))
   
   (let ((default-directory chome ))
