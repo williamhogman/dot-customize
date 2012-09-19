@@ -1,8 +1,9 @@
 
 
-(menu-bar-mode 0)
-(tool-bar-mode 0)
-(scroll-bar-mode 0)
+
+(if menu-bar-mode (menu-bar-mode 0))
+(if tool-bar-mode (tool-bar-mode 0))
+(if scroll-bar-mode (scroll-bar-mode 0))
 
 (let  ((chome (concat (getenv "C_HOME") "emacs")))
   
