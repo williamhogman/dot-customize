@@ -59,12 +59,7 @@ editor_cmd = terminal .. " -e " .. editor
 modkey = "Mod4"
 
 
-awful.util.spawn(dot_customize.."/commands/autorun.sh")
-
-
--- Table of layouts to cover with awful.layout.inc, order matters.
-layouts =
-   {
+layouts = {
    awful.layout.suit.tile,
    awful.layout.suit.tile.left,
    awful.layout.suit.tile.bottom,
@@ -78,7 +73,6 @@ layouts =
    awful.layout.suit.floating,
    awful.layout.suit.magnifier
    }
--- }}}
 
 tags = {}
  -- {{{ Tags

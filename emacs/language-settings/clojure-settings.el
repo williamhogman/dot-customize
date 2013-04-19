@@ -29,13 +29,13 @@
   '(add-to-list 'ffip-patterns "*.clj"))
 
 
-
 (add-hook 'clojure-mode-hook
           (lambda ()
             (enable-paredit-mode)
+            ;;(add-to-list 'ac-sources 'ac-source-yasnippet)
             (rainbow-delimiters-mode)
-            (add-to-list 'ac-sources 'ac-source-yasnippet)
             (setq buffer-save-without-query t)))
+
 
 ;;command to align let statements
 ;;To use: M-x align-cljlet
@@ -77,12 +77,5 @@
 
 (setq nrepl-popup-stacktraces nil)
 (add-to-list 'same-window-buffer-names "*nrepl*")
-
-;;Auto Complete
-(require 'ac-nrepl )
-(add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
-(add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
-(eval-after-load "auto-complete"
-  '(add-to-list 'ac-modes 'nrepl-mode))
 
 (provide 'clojure-settings)

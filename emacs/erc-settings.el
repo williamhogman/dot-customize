@@ -1,5 +1,6 @@
 (require 'tls)
 
+
 (setq
 ;; Settings for znc
  znc-servers '(("gandalf.hogman.me" 7565 t

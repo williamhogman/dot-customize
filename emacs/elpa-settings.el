@@ -1,6 +1,6 @@
-(setq package-archives '(("ELPA" . "http://tromey.com/elpa")
+(setq package-archives '(
                          ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("emacs-elpa" . "http://elpa.gnu.org/packages")
+;;                         ("emacs-elpa" . "http://elpa.gnu.org/packages")
                          ("melpa" . "http://mepla.milkbox.net/packages")
                          ))
 

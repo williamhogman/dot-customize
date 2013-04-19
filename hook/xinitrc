@@ -6,6 +6,10 @@
 $C_HOME/commands/setup-kb.sh
 
 
+xset +fp /usr/share/fonts/local
+xset fp rehash
+
+
 $C_HOME/commands/reload-xresources.sh
 
 awesome -c $C_HOME/apps/awesome/rc.lua

@@ -1,15 +1,15 @@
 ;; Autocomplete
-(add-to-list 'load-path "/usr/share/emacs/site-lisp/auto-complete")
 (require 'auto-complete)
 (require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "/usr/share/emacs/site-lisp/auto-complete/ac-dict")
-(add-to-list 'ac-dictionary-directories (concat (getenv "C_HOME") "emacs/ac-dict/"))
+;;(add-to-list 'ac-dictionary-directories (concat (getenv "C_HOME")
+;;"emacs/ac-dict/"))
+(add-to-list 'ac-dictionary-directories (concat (getenv "C_HOME") "emacs/vendor/auto-complete/dict"))
+
 (ac-config-default)
 (ac-flyspell-workaround)
 
 (setq ac-comphist-file (concat (getenv "C_HOME") "tmp/ac-histfile.dat"))
 
-(global-auto-complete-mode t)
 (setq ac-auto-show-menu t)
 (setq ac-dwim t)
 (setq ac-use-menu-map t)

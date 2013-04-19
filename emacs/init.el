@@ -63,16 +63,19 @@
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 
-
+(require 'autocomplete-settings)
+(require 'yas-settings)
 (require 'misc)
 
 (require 'ess-settings)
-(require 'autocomplete-settings)
+
+(require 'rainbow-delimiters)
 
 (require 'yaml)
 
 (require 'python-settings)
 (require 'clojure-settings)
+(require 'golang-settings)
 (require 'fastnav)
 
 (require 'keybindings)

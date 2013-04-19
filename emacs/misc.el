@@ -44,5 +44,11 @@
 
 (add-hook 'shell-mode-hook 'add-mode-line-dirtrack)
 
+(add-hook 'prog-mode-hook 'flycheck-mode)
+
+(require 'pretty-mode-plus)
+(global-pretty-mode 1)
+
 
 (provide 'misc)
+
