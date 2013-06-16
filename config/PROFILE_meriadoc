@@ -18,3 +18,5 @@ export VISUAL="emacsclient"
 # IO devices
 export C_KEYBOARD="ASUS_LAPTOP_KB"
 
+export GOPATH=/home/williamh/go:$GOPATH
+export GOBIN=/home/williamh/bin/
