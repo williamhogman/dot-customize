@@ -223,7 +223,6 @@ globalkeys = awful.util.table.join(
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey,           }, "w", function () mymainmenu:show({keygrabber=true}) end),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
@@ -262,6 +261,17 @@ globalkeys = awful.util.table.join(
               function () 
                  awful.util.spawn(dot_customize.."commands/screen-off.sh")
               end),
+
+    awful.key({ modkey, }, "w",
+              function()
+                 awful.util.spawn(dot_customize.."commands/start-browser.sh")
+              end),
+
+    awful.key({ modkey, }, "e",
+              function()
+                 awful.util.spawn(dot_customize.."commands/open-emacs-frame.sh")
+              end
+             ),
 
     awful.key({ modkey }, "x",
               function ()
@@ -342,6 +352,9 @@ clientbuttons = awful.util.table.join(
 root.keys(globalkeys)
 -- }}}
 
+
+
+
 -- {{{ Rules
 awful.rules.rules = {
     -- All clients will match this rule.
@@ -363,7 +376,7 @@ awful.rules.rules = {
     { rule = { name = "emacs-irc" }, properties = { tag=tags[1][12] }},
     { rule = { class = "Skype", role = "ConverstationsWindows"}, properties={callback=awful.client.setslave} },
     { rule = { class = "Thunderbird" },
-      properties = { tag = tags[2][13] }},
+      properties = { tag = tags[screen.count()][13] }},
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
