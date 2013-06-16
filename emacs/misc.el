@@ -1,8 +1,9 @@
 ;;
 ;; Misc stuff
 
-(require 'volatile-highlights)
-(volatile-highlights-mode t)
+
+(eval-after-load 'volatile-highlights
+  '(volatile-highlights-mode t))
 
 
 
@@ -45,10 +46,7 @@
 (add-hook 'shell-mode-hook 'add-mode-line-dirtrack)
 
 (add-hook 'prog-mode-hook 'flycheck-mode)
-
-(require 'pretty-mode-plus)
-(global-pretty-mode 1)
-
+(add-hook 'after-init-hook (lambda () (require 'pretty-mode-plus) (global-pretty-mode 1)))
 
 (provide 'misc)
-
+;;; misc.el ends here 
