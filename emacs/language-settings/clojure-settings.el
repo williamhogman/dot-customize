@@ -1,6 +1,3 @@
-(require 'clojure-mode)
-(require 'nrepl )
-
 
 (setq nrepl-server-command "lein2 repl")
 
@@ -37,24 +34,20 @@
             (setq buffer-save-without-query t)))
 
 
-;;command to align let statements
-;;To use: M-x align-cljlet
-;;(live-add-pack-lib "align-cljlet")
-;;(require 'align-cljlet)
 
 ;;Treat hyphens as a word character when transposing words
-(defvar clojure-mode-with-hyphens-as-word-sep-syntax-table
-  (let ((st (make-syntax-table clojure-mode-syntax-table)))
-    (modify-syntax-entry ?- "w" st)
-    st))
+;;(defvar clojure-mode-with-hyphens-as-word-sep-syntax-table
+;;  (let ((st (make-syntax-table clojure-mode-syntax-table)))
+;;    (modify-syntax-entry ?- "w" st)
+;;    st))
 
-(defun live-transpose-words-with-hyphens (arg)
-  "Treat hyphens as a word character when transposing words"
-  (interactive "*p")
-  (with-syntax-table clojure-mode-with-hyphens-as-word-sep-syntax-table
-    (transpose-words arg)))
+;;(defun live-transpose-words-with-hyphens (arg)
+;;  "Treat hyphens as a word character when transposing words"
+;;  (interactive "*p")
+;;  (with-syntax-table clojure-mode-with-hyphens-as-word-sep-syntax-table
+;;    (transpose-words arg)))
 
-(define-key clojure-mode-map (kbd "M-t") 'live-transpose-words-with-hyphens)
+;;(define-key clojure-mode-map (kbd "M-t") 'live-transpose-words-with-hyphens)
 
 (setq auto-mode-alist (append '(("\\.cljs$" . clojure-mode))
                               auto-mode-alist))
