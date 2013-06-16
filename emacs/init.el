@@ -76,7 +76,6 @@
 (require 'python-settings)
 (require 'clojure-settings)
 (require 'golang-settings)
-(require 'fastnav)
 
 (require 'keybindings)
 
