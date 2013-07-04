@@ -1,6 +1,9 @@
 
 (require 'go-mode)
 
+(eval-after-load "go-mode"
+  (add-hook 'before-save-hook 'gofmt-before-save))
+
 ;;
 ;;(eval-after-load "go-mode"
 ;;  '(progn
