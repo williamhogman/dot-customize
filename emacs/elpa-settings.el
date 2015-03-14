@@ -1,13 +1,8 @@
-(setq package-archives '(
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
-;;                         ("emacs-elpa" . "http://elpa.gnu.org/packages")
-                         ("melpa" . "http://mepla.milkbox.net/packages")
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ))
 
-(if (fboundp 'package-initialize)
-  (package-initialize)
-  (progn
-    (load (concat (getenv "C_HOME") "emacs/compat/package.el"))
-    (package-initialize)))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t) ; Org-mode's repository
 
 (provide 'elpa-settings)
