@@ -7,7 +7,7 @@ export PATH=$HOME/bin/:$HOME/.gem/ruby/1.9.1/bin/:$PATH
 # Browser to be used by start-browser.sh and others
 
 # we want the latest and greatest!
-export BROWSER="firefox-aurora"
+export BROWSER="google-chrome-unstable"
 #export BROWSER="firefox"
 
 # EDITOR and VISUAL
