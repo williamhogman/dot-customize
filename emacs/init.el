@@ -39,9 +39,6 @@
 
 (require 'misc)
 
-
-(require 'yaml)
-
 (require 'python-settings)
 (require 'clojure-settings)
 (require 'golang-settings)
