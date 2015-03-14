@@ -16,10 +16,6 @@
     (normal-top-level-add-subdirs-to-load-path)
     )
 
-  (let ((default-directory (concat chome "/vendor")))
-    (normal-top-level-add-subdirs-to-load-path)
-    )
-
   (require 'elpa-settings)
   
   (set-default-font "Inconsolata-13")
@@ -41,7 +37,6 @@
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 
-(require 'yas-settings)
 (require 'misc)
 
 
