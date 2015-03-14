@@ -45,8 +45,7 @@
 
 (add-hook 'shell-mode-hook 'add-mode-line-dirtrack)
 
-(add-hook 'prog-mode-hook 'flycheck-mode)
-(add-hook 'after-init-hook (lambda () (require 'pretty-mode-plus) (global-pretty-mode 1)))
+					;(add-hook 'prog-mode-hook 'flycheck-mode)
 
 (provide 'misc)
 ;;; misc.el ends here 
