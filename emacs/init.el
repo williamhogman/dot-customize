@@ -69,8 +69,6 @@
 
 (require 'ess-settings)
 
-(require 'rainbow-delimiters)
-
 (require 'yaml)
 
 (require 'python-settings)
