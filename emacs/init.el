@@ -38,8 +38,6 @@
 
 (require 'misc)
 
-(require 'python-settings)
 (require 'clojure-settings)
-(require 'golang-settings)
 
 (provide 'init)
