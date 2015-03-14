@@ -20,7 +20,6 @@
   
   (set-default-font "Inconsolata-13")
   )
-(ignore-errors (load (concat (getenv "C_HOME") "private/emacs-priv.el")))
 
 
 (setenv "ESHELL" (concat (getenv "C_HOME") "/commands/eshell.sh"))
