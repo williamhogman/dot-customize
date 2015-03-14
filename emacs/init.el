@@ -26,7 +26,6 @@
   )
 (ignore-errors (load (concat (getenv "C_HOME") "private/emacs-priv.el")))
 
-(require 'colortheme-settings)
 
 (setenv "ESHELL" (concat (getenv "C_HOME") "/commands/eshell.sh"))
 
