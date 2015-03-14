@@ -30,8 +30,7 @@
           (lambda ()
             (enable-paredit-mode)
             ;;(add-to-list 'ac-sources 'ac-source-yasnippet)
-            (rainbow-delimiters-mode)
-            (setq buffer-save-without-query t)))
+n            (setq buffer-save-without-query t)))
 
 
 
@@ -51,10 +50,6 @@
 
 (setq auto-mode-alist (append '(("\\.cljs$" . clojure-mode))
                               auto-mode-alist))
-
-(dolist (x '(scheme emacs-lisp lisp))
-  (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'rainbow-delimiters-mode))
-
 
 (add-hook 'nrepl-interaction-mode-hook
           (lambda ()
