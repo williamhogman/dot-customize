@@ -42,6 +42,4 @@
 (require 'clojure-settings)
 (require 'golang-settings)
 
-(require 'keybindings)
-
 (provide 'init)
