@@ -29,9 +29,6 @@
 
 (setenv "ESHELL" (concat (getenv "C_HOME") "/commands/eshell.sh"))
 
-
-(require 'rust-mode)
-
 (column-number-mode t)
 (setq inhibit-splash-screen t)
 ;;set all coding systems to utf-8
@@ -44,11 +41,9 @@
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 
-(require 'autocomplete-settings)
 (require 'yas-settings)
 (require 'misc)
 
-(require 'ess-settings)
 
 (require 'yaml)
 
@@ -57,7 +52,5 @@
 (require 'golang-settings)
 
 (require 'keybindings)
-
-(require 'erc-settings)
 
 (provide 'init)
