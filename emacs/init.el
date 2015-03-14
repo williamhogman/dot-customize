@@ -16,7 +16,6 @@
     (normal-top-level-add-subdirs-to-load-path)
     )
 
-  (require 'elpa-settings)
   
   (set-default-font "Inconsolata-13")
   )
@@ -35,8 +34,6 @@
 (set-keyboard-coding-system 'utf-8)
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
-
-(require 'misc)
 
 (require 'clojure-settings)
 
