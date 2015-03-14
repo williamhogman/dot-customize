@@ -1,12 +1,6 @@
 ;;
 ;; Misc stuff
 
-
-(eval-after-load 'volatile-highlights
-  '(volatile-highlights-mode t))
-
-
-
 ;; Smart shell function
 (defun my-filter (condp lst)
   (delq nil (mapcar (lambda (x) (and (funcall condp x) x)) lst)))
