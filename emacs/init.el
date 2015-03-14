@@ -1,10 +1,3 @@
-
-
-
-(if (boundp 'menu-bar-mode) (menu-bar-mode 0))
-(if (boundp 'tool-bar-mode) (tool-bar-mode 0))
-(if (boundp 'scroll-bar-mode) (scroll-bar-mode 0))
-
 ;; If C_HOME hasn't been set give it a resonable default
 (if (not (getenv "C_HOME"))
     (setenv "C_HOME" (concat (getenv "HOME") "/.customize/")))
