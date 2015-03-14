@@ -19,28 +19,10 @@
   (let ((default-directory (concat chome "/vendor")))
     (normal-top-level-add-subdirs-to-load-path)
     )
-  ;; Add solarized colour theme
-  (add-to-list
-   'load-path
-   (concat (getenv "C_HOME") "vendor/solarized/emacs-colors-solarized/")
-   )
-
-
-  
 
   (require 'elpa-settings)
   
   (set-default-font "Inconsolata-13")
-
-
-
-  (require 'framemove)
-  (framemove-default-keybindings)
-  (setq framemove-hook-into-windmove t)
-
-
-
-  
   )
 (ignore-errors (load (concat (getenv "C_HOME") "private/emacs-priv.el")))
 
