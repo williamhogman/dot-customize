@@ -1,0 +1,68 @@
+wtf:
+  colors:
+    border:
+      focusable: darkslateblue
+      focused: orange
+      normal: gray
+  grid:
+    columns: [50, 50, 50, 50]
+    rows: [16, 16, 16, 4, 4]
+  refreshInterval: 1
+  mods:
+    clocks_a:
+      colors:
+        rows:
+          even: "lightblue"
+          odd: "white"
+      enabled: true
+      locations:
+        SFO: "America/Los_Angeles"
+        STO: "Europe/Stockholm"
+        LON: "Europe/London"
+      position:
+        top: 0
+        left: 1
+        height: 1
+        width: 1
+      refreshInterval: 15
+      sort: "alphabetical"
+      title: "Clocks A"
+      type: "clocks"
+    gcal:
+      colors:
+        title: "red"
+        description: "lightblue"
+      highlights:
+        - ['1on1|1\/11', 'green']
+        - ['apple|google|aws', 'blue']
+        - ['interview|meet', 'magenta']
+        - ['lunch', 'yellow']
+      past: "gray"
+      calendarReadLevel: "reader"
+      conflictIcon: "🚨"
+      currentIcon: "💥"
+      email: "william.rudenmalm@bynk.se"
+      enabled: true
+      eventCount: 12
+      multiCalendar: true
+      position:
+        top: 0
+        left: 0
+        height: 4
+        width: 1
+      refreshInterval: 300
+      secretFile: "~/.config/wtf/gcal_credentials.json"
+      showDeclined: true
+      timezone: "Stockholm/Sweden"
+      withLocation: true
+  uptime:
+      args: [""]
+      cmd: "uptime"
+      enabled: true
+      position:
+        top: 3
+        left: 1
+        height: 1
+        width: 2
+      refreshInterval: 30
+      type: cmdrunner

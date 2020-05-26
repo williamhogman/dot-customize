@@ -3,6 +3,8 @@
       relink: true
 
 - clean: ['~']
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
 
 - link:
     ~/.tmux.conf: misc/tmux.conf
@@ -12,8 +14,21 @@
 
 - link:
     ~/.xinitrc:
-      if: '[ `uname` = Darwin ]'
+      if: '[ `uname` = Linux ]'
       path: misc/xinitrc
 
-- shell:
-  - [git submodule update --init --recursive, Installing submodules]
+- link:
+    ~/.config/fish:
+      create: true
+      path: config/fish
+    ~/.config/rtv:
+      create: true
+      path: config/rtv
+    ~/.config/wtf:
+      create: true
+      path: config/wtf
+
+
+
+- brewfile:
+    - ./Brewfile
