@@ -8,14 +8,17 @@
 
 - link:
     ~/.tmux.conf: misc/tmux.conf
-
-- link:
     ~/.gitconfig: misc/gitconfig
 
 - link:
     ~/.xinitrc:
       if: '[ `uname` = Linux ]'
       path: misc/xinitrc
+
+- link:
+    "~/Library/Application Support/iTerm2/DynamicProfiles/Profiles.json":
+      create: true
+      path: config/iTerm2/Profiles.json
 
 - link:
     ~/.config/fish:
