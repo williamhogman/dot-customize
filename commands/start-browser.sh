@@ -4,4 +4,8 @@
 # Launches the browser with the passed in options
 #
 
-$BROWSER $@
+if [ "$(uname)" == "Darwin" ]; then
+    open $@
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    $BROWSER $@
+fi
