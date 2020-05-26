@@ -10,5 +10,10 @@
 - link:
     ~/.gitconfig: misc/gitconfig
 
+- link:
+    ~/.xinitrc:
+      if: '[ `uname` = Darwin ]'
+      path: misc/xinitrc
+
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
