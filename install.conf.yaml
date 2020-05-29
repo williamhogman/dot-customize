@@ -19,6 +19,9 @@
     "~/Library/Application Support/iTerm2/DynamicProfiles/Profiles.json":
       create: true
       path: config/iTerm2/Profiles.json
+    "~/Library/Application\ Support/Spectacle/Shortcuts.json":
+      create: true
+      path: misc/spectacle-Shortcuts.json
 
 - link:
     ~/.config/fish:
@@ -30,8 +33,14 @@
     ~/.config/wtf:
       create: true
       path: config/wtf
+    ~/.config/catt:
+      create: true
+      path: config/catt
 
 
 
 - brewfile:
     - ./Brewfile
+
+- shell:
+  - [pip3 install catt, Installing CATT]
