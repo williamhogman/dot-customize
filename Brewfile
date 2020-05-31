@@ -23,6 +23,7 @@ brew "xhyve"
 brew "dive" # Nice tool for inspecting docker images
 brew "reattach-to-user-namespace"
 brew "gitup"
+brew "lazydocker"
 
 # Bynk-tools
 cask "homebrew/cask-versions/adoptopenjdk8"
