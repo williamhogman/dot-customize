@@ -7,23 +7,21 @@
   - [git submodule update --init --recursive, Installing submodules]
 
 - link:
-    ~/.tmux.conf: misc/tmux.conf
-    ~/.gitconfig: misc/gitconfig
-
-- link:
+    ~/.tmux.conf:
+      path: misc/tmux.conf
+    ~/.gitconfig:
+      path: misc/gitconfig
     ~/.xinitrc:
       if: '[ `uname` = Linux ]'
       path: misc/xinitrc
-
-- link:
     "~/Library/Application Support/iTerm2/DynamicProfiles/Profiles.json":
       create: true
       path: config/iTerm2/Profiles.json
+      if: '[ `uname` = Darwin ]'
     "~/Library/Application\ Support/Spectacle/Shortcuts.json":
       create: true
       path: misc/spectacle-Shortcuts.json
-
-- link:
+      if: '[ `uname` = Darwin ]'
     ~/.config/fish:
       create: true
       path: config/fish
@@ -37,10 +35,10 @@
       create: true
       path: config/catt
 
-
-
 - brewfile:
     - ./Brewfile
 
 - shell:
   - [pip3 install catt, Installing CATT]
+  - [pip3 install samsungctl websocket-client, Installing SamsungCTL]
+  - [pip3 install howdoi, Install howdoi]
