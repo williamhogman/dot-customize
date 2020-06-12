@@ -1,17 +1,8 @@
-#!/bin/zsh
-# don't source this!
+#!/usr/bin/env bash
 
-source $C_HOME/lib/all.sh
-
-
-# no need to run this on Mac OS
-c_dont_run_on_mac;
-
-
-
-# Swedish layout
-setxkbmap se
-
-# Fixes by keyboard model
-
-xmodmap "$C_HOME/keyboards/$C_KEYBOARD"
+if [ "$(uname)" == "Darwin" ]; then
+    # TODO: Mac keyboard setup
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    setxkbmap se
+    xmodmap "$C_HOME/keyboards/$C_KEYBOARD"
+fi

@@ -6,9 +6,6 @@ export C_HOME=$HOME/.customize/
 # Add ~/bin
 export PATH=$HOME/bin/:$PATH
 
-# Browser to be used by start-browser.sh and others
-export C_BROWSER="chromium"
-
 # EDITOR and VISUAL
 export EDITOR="emacsclient"
 export VISUAL="emacsclient"

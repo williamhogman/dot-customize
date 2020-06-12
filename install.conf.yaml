@@ -1,0 +1,46 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
+
+- link:
+    ~/.tmux.conf: misc/tmux.conf
+    ~/.gitconfig: misc/gitconfig
+
+- link:
+    ~/.xinitrc:
+      if: '[ `uname` = Linux ]'
+      path: misc/xinitrc
+
+- link:
+    "~/Library/Application Support/iTerm2/DynamicProfiles/Profiles.json":
+      create: true
+      path: config/iTerm2/Profiles.json
+    "~/Library/Application\ Support/Spectacle/Shortcuts.json":
+      create: true
+      path: misc/spectacle-Shortcuts.json
+
+- link:
+    ~/.config/fish:
+      create: true
+      path: config/fish
+    ~/.config/rtv:
+      create: true
+      path: config/rtv
+    ~/.config/wtf:
+      create: true
+      path: config/wtf
+    ~/.config/catt:
+      create: true
+      path: config/catt
+
+
+
+- brewfile:
+    - ./Brewfile
+
+- shell:
+  - [pip3 install catt, Installing CATT]
