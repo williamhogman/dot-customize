@@ -6,7 +6,13 @@
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
 
+- create:
+    - ~/.ssh/sockets
+
 - link:
+    ~/.ssh/config:
+      path: config/ssh/config
+      create: true
     ~/.tmux.conf:
       path: misc/tmux.conf
     ~/.gitconfig:
