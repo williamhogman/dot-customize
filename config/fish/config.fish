@@ -1,7 +1,7 @@
 set fish_greeting
 set -x GPG_TTY (tty)
 set -x SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
-set -x PATH "$HOME/.krew/bin:$HOME/.cargo/bin:$PATH"
+set -x PATH "$HOME/.bin/:$HOME/.krew/bin:$HOME/.cargo/bin:$PATH"
 set pipenv_fish_fancy yes
 set -x ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX YES
 set -x VISUAL "emacsclient -a nano -q"

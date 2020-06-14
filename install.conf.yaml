@@ -10,6 +10,9 @@
     - ~/.ssh/sockets
 
 - link:
+    ~/.bin/safe-reattach-to-user-namespace.sh:
+      path: misc/safe-reattach-to-user-namespace.sh
+      create: true
     ~/.ssh/config:
       path: config/ssh/config
       create: true
