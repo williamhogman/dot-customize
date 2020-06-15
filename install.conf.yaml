@@ -43,6 +43,10 @@
     ~/.config/catt:
       create: true
       path: config/catt
+    ~/.config/user-tmpfiles.d/10-tmp.conf:
+      create: true
+      path: config/user-tmpfiles.d/10-tmp.conf
+      if: '[ `uname` = Linux ]'
 
 - brewfile:
     - ./Brewfile
