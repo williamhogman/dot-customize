@@ -2,13 +2,13 @@
   "entries": {
     "cask": {
       "iterm2": {
-        "version": "3.3.2",
+        "version": "3.3.12",
         "options": {
           "full_name": "iterm2"
         }
       },
       "alfred": {
-        "version": "4.0.3_1092",
+        "version": "4.0.9_1144",
         "options": {
           "full_name": "alfred"
         }
@@ -20,19 +20,19 @@
         }
       },
       "docker": {
-        "version": "2.1.0.1,37199",
+        "version": "2.3.0.3,45519",
         "options": {
           "full_name": "docker"
         }
       },
       "slack": {
-        "version": "4.0.3",
+        "version": "4.7.0",
         "options": {
           "full_name": "slack"
         }
       },
       "firefox": {
-        "version": "68.0.2",
+        "version": "78.0.1",
         "options": {
           "full_name": "firefox"
         }
@@ -50,13 +50,13 @@
         }
       },
       "intellij-idea-ce": {
-        "version": "2019.2.1,192.6262.58",
+        "version": "2020.1.2,201.7846.76",
         "options": {
           "full_name": "intellij-idea-ce"
         }
       },
       "google-chrome": {
-        "version": "76.0.3809.132",
+        "version": "83.0.4103.116",
         "options": {
           "full_name": "google-chrome"
         }
@@ -74,7 +74,7 @@
         }
       },
       "gpg-suite": {
-        "version": "2019.1",
+        "version": "2020.1",
         "options": {
           "full_name": "gpg-suite"
         }
@@ -212,22 +212,22 @@
         "bottle": false
       },
       "node": {
-        "version": "14.4.0",
+        "version": "14.5.0",
         "bottle": {
           "cellar": ":any",
           "prefix": "/usr/local",
           "files": {
             "catalina": {
-              "url": "https://homebrew.bintray.com/bottles/node-14.4.0.catalina.bottle.tar.gz",
-              "sha256": "7fbf484b2c921451809192dba684a838ba387a4affc1d4380ebb607f95ccf0ec"
+              "url": "https://homebrew.bintray.com/bottles/node-14.5.0.catalina.bottle.tar.gz",
+              "sha256": "91096144949902e76d46a3c0cfa26f5f55665da838f77ac96c58c416940d28d0"
             },
             "mojave": {
-              "url": "https://homebrew.bintray.com/bottles/node-14.4.0.mojave.bottle.tar.gz",
-              "sha256": "06ef204701e93bbcf3909dba4ac9d3ca1d4df00a980f03cbeab390be1c562d34"
+              "url": "https://homebrew.bintray.com/bottles/node-14.5.0.mojave.bottle.tar.gz",
+              "sha256": "3f29cb2043ac857f2339ed390d54ea6124ff7be1c6fbb5a2a40a43261775247e"
             },
             "high_sierra": {
-              "url": "https://homebrew.bintray.com/bottles/node-14.4.0.high_sierra.bottle.tar.gz",
-              "sha256": "68c7e5ff3e93bda3795d954b83609282f9ccf3cbe8096affeb28179d1fc1bd1d"
+              "url": "https://homebrew.bintray.com/bottles/node-14.5.0.high_sierra.bottle.tar.gz",
+              "sha256": "6d4ea6d0ed5ea232ca3614f187c106a813c07eee44f68fba884fcf4edc8b01b6"
             }
           }
         }
@@ -254,22 +254,22 @@
         }
       },
       "skaffold": {
-        "version": "1.11.0",
+        "version": "1.12.0",
         "bottle": {
           "cellar": ":any_skip_relocation",
           "prefix": "/usr/local",
           "files": {
             "catalina": {
-              "url": "https://homebrew.bintray.com/bottles/skaffold-1.11.0.catalina.bottle.tar.gz",
-              "sha256": "b3fe831ee274a385198f3c4feaed10432d90ab0f2451d725732c7ae8441fa526"
+              "url": "https://homebrew.bintray.com/bottles/skaffold-1.12.0.catalina.bottle.tar.gz",
+              "sha256": "556ed4c247daa2984c5ca579762165498010001c69be13dec946ef1c74a4497e"
             },
             "mojave": {
-              "url": "https://homebrew.bintray.com/bottles/skaffold-1.11.0.mojave.bottle.tar.gz",
-              "sha256": "437c7bc56fa3aca83ccc0d415a69e2f82a9fbb219b63c1f483547a2047ebd6c7"
+              "url": "https://homebrew.bintray.com/bottles/skaffold-1.12.0.mojave.bottle.tar.gz",
+              "sha256": "1fcbae9dbdfe5df2a10366e3894dbb21c973ab76a7972bb76be026d5550ee059"
             },
             "high_sierra": {
-              "url": "https://homebrew.bintray.com/bottles/skaffold-1.11.0.high_sierra.bottle.tar.gz",
-              "sha256": "aff599dc873608227836e75bfed176e4dfd491dc370635f8f09faac9b6d5e7ae"
+              "url": "https://homebrew.bintray.com/bottles/skaffold-1.12.0.high_sierra.bottle.tar.gz",
+              "sha256": "a5663b3146e187620e2e78205106334a73ddc7fd70513e6eb61f4cd4a6f8f047"
             }
           }
         }
@@ -480,12 +480,12 @@
   "system": {
     "macos": {
       "catalina": {
-        "HOMEBREW_VERSION": "2.4.0",
+        "HOMEBREW_VERSION": "2.4.3",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "0185566f43a14e0053417c159b29d676a2685642",
-        "CLT": "11.5.0.0.1.1588476445",
-        "Xcode": "11.4.1",
-        "macOS": "10.15.4"
+        "Homebrew/homebrew-core": "2838489c2b9e34b9ee3b759ce5daa434cb9fffdb",
+        "CLT": "1103.0.32.62",
+        "Xcode": "11.5",
+        "macOS": "10.15.5"
       }
     }
   }
