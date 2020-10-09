@@ -10,3 +10,4 @@ by-host/*/dot-config/SpotifyResolver/
 **.elc
 
 .svn
+config/fish/fish_variables

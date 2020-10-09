@@ -16,6 +16,8 @@
 	# Amend the currently staged files to the latest commit
 	amend = commit --amend --reuse-message=HEAD
 
+        cm-a  = commit --all
+
 	# List contributors with number of commits
 	contributors = shortlog --summary --numbered
 

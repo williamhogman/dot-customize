@@ -5,7 +5,8 @@ ControlPersist yes
 ControlPath ~/.ssh/sockets/socket-%r@%h:%p
 ServerAliveInterval 30
 
-
+Host github.com
+User git
 
 Host mtg-rpy
 HostName mtg-rpy.ts.whn.xyz

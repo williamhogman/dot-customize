@@ -3,6 +3,7 @@ cask "iterm2"
 cask "alfred"
 cask "spectacle"
 cask "docker"
+brew "tmux"
 
 # Apps
 cask "slack"
@@ -11,6 +12,7 @@ brew "notmuch"
 brew "jq"
 # Games
 cask "steam"
+cask "discord"
 
 # Dev tools
 cask "emacs"
@@ -26,21 +28,11 @@ brew "gitup"
 brew "lazydocker"
 brew "yank"
 brew "jo"
+brew "docker-compose"
 
-# Bynk-tools
-cask "homebrew/cask-versions/adoptopenjdk8"
 cask "google-cloud-sdk"
-brew "sbt"
 brew "node"
-brew "elixir"
-#brew "zookeeper"
-#brew "kafka"
-#brew "kafkacat"
-#mas "Microsoft Remote Desktop 10", id: 1295203466
 brew "skaffold"
-brew "postgresql"
-
-
 
 # Command line
 brew "fish"
@@ -50,7 +42,5 @@ brew "htop"
 brew "wtfutil"
 
 cask "gpg-suite"
-
 cask "discord"
 cask "docker"
-
