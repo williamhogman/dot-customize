@@ -43,6 +43,9 @@
     ~/.config/catt:
       create: true
       path: config/catt
+    ~/.hammerspoon:
+      create: true
+      path: config/hammerspoon
     ~/.config/user-tmpfiles.d/10-tmp.conf:
       create: true
       path: config/user-tmpfiles.d/10-tmp.conf
