@@ -44,3 +44,5 @@ brew "wtfutil"
 cask "gpg-suite"
 cask "discord"
 cask "docker"
+
+cask "hammerspoon"
