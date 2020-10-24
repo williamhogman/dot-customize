@@ -1,0 +1,14 @@
+.backups
+elpa
+*.elc
+.lsp-session*
+.cache
+.backup
+*~
+places
+projectile-bookmarks.eld
+recentf
+.dap-breakpoints
+.last-package-update-day
+amx-items
+transient
