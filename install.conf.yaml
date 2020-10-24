@@ -46,6 +46,9 @@
     ~/.hammerspoon:
       create: true
       path: config/hammerspoon
+    ~/.emacs.d:
+      create: true
+      path: config/emacs.d
     ~/.config/user-tmpfiles.d/10-tmp.conf:
       create: true
       path: config/user-tmpfiles.d/10-tmp.conf
