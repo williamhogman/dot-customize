@@ -17,6 +17,7 @@
 	amend = commit --amend --reuse-message=HEAD
 
         cm-a  = commit --all
+        pu = pull --rebase --autostash
 
 	# List contributors with number of commits
 	contributors = shortlog --summary --numbered
@@ -115,3 +116,5 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+[init]
+	defaultBranch = master
