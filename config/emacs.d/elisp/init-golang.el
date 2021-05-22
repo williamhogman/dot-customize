@@ -37,10 +37,6 @@
          ("C-c R" . go-remove-unused-imports)
          ("<f1>" . godoc-at-point))
   :config
-  ;; Env vars
-  (with-eval-after-load 'exec-path-from-shell
-    (exec-path-from-shell-copy-envs '("GOPATH" "GO111MODULE" "GOPROXY")))
-
   ;; Install or update tools
   (defvar go--tools '("golang.org/x/tools/cmd/goimports"
                       "github.com/go-delve/delve/cmd/dlv"
@@ -104,6 +100,7 @@
                                                           go-build
                                                           go-test
                                                           go-errcheck))
+		       (add-hook 'before-save-hook 'gofmt-before-save)
                        (flycheck-golangci-lint-setup))))
 
   (use-package go-tag
