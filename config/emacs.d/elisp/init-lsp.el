@@ -71,8 +71,9 @@
   :custom
   (lsp-ui-doc-header t)
   (lsp-ui-doc-include-signature t)
+  (lsp-ui-sideline-show-code-actions t)
   (lsp-ui-doc-border (face-foreground 'default))
-  (lsp-ui-sideline-enable nil)
+  (lsp-ui-sideline-enable t)
   (lsp-ui-sideline-ignore-duplicate t)
   (lsp-ui-sideline-show-code-actions nil)
   :config
