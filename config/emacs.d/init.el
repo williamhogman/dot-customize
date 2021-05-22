@@ -62,3 +62,5 @@ If you experience freezing, decrease this.  If you experience stuttering, increa
 (require 'init-docker)
 (require 'init-js)
 (require 'init-golang)
+(require 'init-rust)
+(put 'downcase-region 'disabled nil)
