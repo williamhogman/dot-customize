@@ -47,6 +47,15 @@ hs.hotkey.bind({ "cmd"}, 10, function()
       hs.application.find()
 end)
 
+function open_hack(name)
+   local w = hs.window.find(name)[1]
+   if w ~= nil then
+      w:focus()
+   else
+      hs.notify.new({title="No such window", informativeText=name}):send()
+   end
+end
+
 switchy = hs.hotkey.modal.new('alt', 'space')
 switchy:bind('', 'g', function() switchy:exit() end)
 switchy:bind('', 's',function()
@@ -59,8 +68,7 @@ switchy:bind('', 'c',function()
 end)
 
 switchy:bind('', 'e',function()
-                -- Emacs needs a special hack for a special boi
-                hs.application.open("org.gnu.Emacs", nil, true)
+                hs.application.launchOrFocus("Emacs")
                 switchy:exit()
 end)
 
@@ -76,5 +84,11 @@ end)
 
 switchy:bind('', 'x', function()
                 hs.application.open("com.google.chrome", nil, true)
+                switchy:exit()
+end)
+
+switchy:bind('', 'd', function()
+                -- open_hack("com.hnc.Discord")
+                hs.application.launchOrFocus("Discord")
                 switchy:exit()
 end)
