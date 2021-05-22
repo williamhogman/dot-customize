@@ -3,3 +3,5 @@
 cd "$(dirname "$0")"
 
 hidutil property --set "$(cat ./macos-hid-properties.json)"
+
+tmux new -s main
