@@ -21,7 +21,10 @@
 
 	# List contributors with number of commits
 	contributors = shortlog --summary --numbered
-
+	sl = "submodule update --init --recursive"
+	sr = "submodule update --init --remote --recursive"
+[status]
+	submoduleSummary = true
 [apply]
 	# Detect whitespace errors when applying a patch
 	whitespace = fix
@@ -71,7 +74,7 @@
 	gpgsign = false
 
 [diff]
-
+	submodule = diff
 	# Detect copies as well as renames
 	renames = copies
 
