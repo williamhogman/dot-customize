@@ -17,7 +17,5 @@ Host bob
 HostName bob.ts.whn.xyz
 ForwardAgent yes
 
-Match canonical host="*.whn.xyz"
-User whn
-Match canonical host="*.whn.se"
+Host *.whn.se *.whn.xyz
 User whn

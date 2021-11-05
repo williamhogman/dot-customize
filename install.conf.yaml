@@ -31,6 +31,9 @@
       create: true
       path: misc/spectacle-Shortcuts.json
       if: '[ `uname` = Darwin ]'
+    ~/.config/alacritty:
+      create: true
+      path: config/alacritty
     ~/.config/fish:
       create: true
       path: config/fish
