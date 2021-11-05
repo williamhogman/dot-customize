@@ -5,7 +5,106 @@
 	<key>DHCheatRepo</key>
 	<dict>
 		<key>installed</key>
-		<dict/>
+		<dict>
+			<key>ASCII_Tables</key>
+			<dict>
+				<key>date</key>
+				<date>2021-03-02T13:06:18Z</date>
+				<key>entry</key>
+				<dict>
+					<key>aliases</key>
+					<array/>
+					<key>name</key>
+					<string>ASCII Tables</string>
+					<key>platform</key>
+					<string>cheatsheet</string>
+					<key>uniqueIdentifier</key>
+					<string>ASCII_Tables</string>
+				</dict>
+			</dict>
+			<key>Cargo</key>
+			<dict>
+				<key>date</key>
+				<date>2021-03-02T13:06:19Z</date>
+				<key>entry</key>
+				<dict>
+					<key>aliases</key>
+					<array>
+						<string>rust cargo</string>
+					</array>
+					<key>name</key>
+					<string>Cargo</string>
+					<key>platform</key>
+					<string>cheatsheet</string>
+					<key>uniqueIdentifier</key>
+					<string>Cargo</string>
+				</dict>
+			</dict>
+			<key>HTML_Entities</key>
+			<dict>
+				<key>date</key>
+				<date>2021-03-02T13:06:19Z</date>
+				<key>entry</key>
+				<dict>
+					<key>aliases</key>
+					<array/>
+					<key>name</key>
+					<string>HTML Entities</string>
+					<key>platform</key>
+					<string>cheatsheet</string>
+					<key>uniqueIdentifier</key>
+					<string>HTML_Entities</string>
+				</dict>
+			</dict>
+			<key>HTTP_Header_Fields</key>
+			<dict>
+				<key>date</key>
+				<date>2021-03-02T13:06:18Z</date>
+				<key>entry</key>
+				<dict>
+					<key>aliases</key>
+					<array/>
+					<key>name</key>
+					<string>HTTP Header Fields</string>
+					<key>platform</key>
+					<string>cheatsheet</string>
+					<key>uniqueIdentifier</key>
+					<string>HTTP_Header_Fields</string>
+				</dict>
+			</dict>
+			<key>HTTP_Status_Codes</key>
+			<dict>
+				<key>date</key>
+				<date>2021-03-02T13:06:18Z</date>
+				<key>entry</key>
+				<dict>
+					<key>aliases</key>
+					<array/>
+					<key>name</key>
+					<string>HTTP Status Codes</string>
+					<key>platform</key>
+					<string>cheatsheet</string>
+					<key>uniqueIdentifier</key>
+					<string>HTTP_Status_Codes</string>
+				</dict>
+			</dict>
+			<key>Magit_for_Emacs</key>
+			<dict>
+				<key>date</key>
+				<date>2021-03-02T13:06:19Z</date>
+				<key>entry</key>
+				<dict>
+					<key>aliases</key>
+					<array/>
+					<key>name</key>
+					<string>Magit for Emacs</string>
+					<key>platform</key>
+					<string>cheatsheet</string>
+					<key>uniqueIdentifier</key>
+					<string>Magit_for_Emacs</string>
+				</dict>
+			</dict>
+		</dict>
 		<key>uninstalled</key>
 		<dict/>
 	</dict>
@@ -37,7 +136,7 @@
 			<key>github.com/gin-gonic/gin</key>
 			<dict>
 				<key>date</key>
-				<date>2020-10-09T17:27:41Z</date>
+				<date>2021-09-14T16:02:51Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
