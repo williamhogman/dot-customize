@@ -1,5 +1,6 @@
 [user]
 	email = me@whn.se
+	name = William Högman Rudenmalm
 
 [alias]
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
@@ -121,3 +122,8 @@
 	insteadOf = "gist:"
 [init]
 	defaultBranch = master
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
