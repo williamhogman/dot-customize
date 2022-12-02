@@ -44,6 +44,9 @@
 ;; -SudoEditPac
 
 
+(use-package no-littering :defer f)
+
+
 ;; DefBindings
 ;; Unbind unneeded keys
 (global-set-key (kbd "C-z") nil)
@@ -141,10 +144,6 @@ The original function deletes trailing whitespace of the current line."
 ;; Set history-length longer
 (setq-default history-length 500)
 ;; -History
-
-;; SmallConfigs
-;; Move the backup fies to user-emacs-directory/.backup
-(setq backup-directory-alist `(("." . ,(expand-file-name ".backup" user-emacs-directory))))
 
 ;; Ask before killing emacs
 (setq confirm-kill-emacs 'y-or-n-p)
