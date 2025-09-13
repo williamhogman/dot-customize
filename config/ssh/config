@@ -1,9 +1,29 @@
+Host mario.mtg.whn.xyz
+  HostName mario.mtg.whn.xyz
+  User hassio
+
+Host martio.mtg.whn.xyz
+  HostName martio.mtg.whn.xyz
+  User hassio
+
+Host mario.mtg.whn.xyz
+  HostName mario.mtg.whn.xyz
+  User root
+
+Host lucretius.whn.xyz
+  HostName lucretius.whn.xyz
+  ForwardAgent yes
+
+Host plutarchos.mtg.whn.xyz
+  ForwardAgent yes
+
 Host *
 Ciphers aes128-gcm@openssh.com,aes256-gcm@openssh.com,chacha20-poly1305@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
 ControlMaster auto
 ControlPersist yes
 ControlPath ~/.ssh/sockets/socket-%r@%h:%p
 ServerAliveInterval 30
+IdentityAgent /Users/whn/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 
 Host github.com
 User git

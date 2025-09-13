@@ -1,4 +1,5 @@
-hs.window.animationDuration = 0.001
+hs.window.animationDuration = 0
+-- Fix this!
 
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "W", function()
   hs.notify.new({title="Hammerspoon", informativeText="Hello World"}):send()

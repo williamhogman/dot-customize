@@ -1,6 +1,7 @@
 [user]
 	email = me@whn.se
 	name = William Högman Rudenmalm
+	signingkey = /Users/whn/.ssh/git-signing-key
 
 [alias]
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
@@ -127,3 +128,7 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
+[submodule]
+	recurse = true
+[gpg]
+	format = ssh

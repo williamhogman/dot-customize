@@ -173,6 +173,9 @@ The original function deletes trailing whitespace of the current line."
 ;; Add a newline automatically at the end of the file upon save.
 (setq require-final-newline t)
 
+;; WindMove to move bindings
+(windmove-default-keybindings 'meta)
+
 ;; -SmallConfigs
 
 (provide 'init-global-config)

@@ -4,6 +4,8 @@
   "The default value to use for `gc-cons-threshold'.
 If you experience freezing, decrease this.  If you experience stuttering, increase this.")
 
+
+
 (add-hook 'emacs-startup-hook
           (lambda ()
             (if (boundp 'after-focus-change-function)
@@ -61,6 +63,7 @@ If you experience freezing, decrease this.  If you experience stuttering, increa
 (require 'init-yasnippet)
 (require 'init-docker)
 (require 'init-js)
-(require 'init-golang)
+(require 'init-winner)
+;;(require 'init-golang)
 (require 'init-rust)
 (put 'downcase-region 'disabled nil)

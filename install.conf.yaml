@@ -16,6 +16,12 @@
     ~/.ssh/config:
       path: config/ssh/config
       create: true
+    "~/.config/topgrade.toml":
+      path: config/topgrade.toml
+      create: true
+    "~/.config/starship.toml":
+      path: config/starship.toml
+      create: true
     ~/.tmux.conf:
       path: misc/tmux.conf
     ~/.gitconfig:
